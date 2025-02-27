@@ -19,8 +19,8 @@ SRCS 	=	./src/cont_map_check.c			\
 		./src/map_check.c			\
 		./src/movement.c			\
 		./src/render_map.c			\
-		./gnl/get_next_line.c			\
-		./gnl/get_next_line_utils.c
+		./get_next_line_42/get_next_line.c			\
+		./get_next_line_42/get_next_line_utils.c
 
 all: $(NAME)
 
@@ -28,17 +28,6 @@ OBJS	= $(SRCS:.c=.o)
 
 $(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $^ $(LIBMLX) -o $@
-	@echo "\[\033[4;35m                                                            \n\
-	  ▄████████  ▄██████▄          ▄█          ▄██████▄  ███▄▄▄▄      ▄██████▄      \n\
-	 ███    ███ ███    ███        ███         ███    ███ ███▀▀▀██▄   ███    ███     \n\
-	 ███    █▀  ███    ███        ███         ███    ███ ███   ███   ███    █▀      \n\
-	 ███        ███    ███        ███         ███    ███ ███   ███  ▄███            \n\
-	███████████ ███    ███        ███         ███    ███ ███   ███ ▀▀███ ████▄      \n\
-	        ███ ███    ███        ███         ███    ███ ███   ███   ███    ███     \n\
-	  ▄█    ███ ███    ███        ███▌     ▄  ███    ███ ███   ███   ███    ███     \n\
-	▄████████▀   ▀██████▀  █████  ███████▄▄██  ▀██████▀   ▀█   █▀    ████████▀      \n\
-                                                                       	 		\033[0m"
-	@echo "                                \033[44mBy: Abood0x1"
 %.o:%.c
 	@$(CC) $(CFLAGS) -c $^ -o $@
 
