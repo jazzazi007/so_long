@@ -26,16 +26,34 @@ all: $(NAME)
 
 OBJS	= $(SRCS:.c=.o)
 
-$(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $^ $(LIBMLX) -o $@
-%.o:%.c
-	@$(CC) $(CFLAGS) -c $^ -o $@
+LIBFT_DIR = 42_libft
+Printf_DIR = ft_printf
+
+LIBFT = $(LIBFT_DIR)/libft.a
+Printf = $(Printf_DIR)/libftprintf.a
+
+all: $(LIBFT) $(Printf) $(NAME)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+$(Printf):
+	$(MAKE) -C $(Printf_DIR)
+$(NAME): $(OBJS) $(LIBFT) $(Printf)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -L$(Printf_DIR) -lft
+
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(Printf_DIR) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)
+	rm -f $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(Printf_DIR) clean
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(Printf_DIR) fclean
 
 re: fclean all
 
+.PHONY: all clean fclean re

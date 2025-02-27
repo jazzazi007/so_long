@@ -8,7 +8,7 @@
 # include <stdint.h>
 # include <stdio.h>
 # include <limits.h>
-# include "../gnl/get_next_line.h"
+# include "../get_next_line_42/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 # include <string.h>
 
