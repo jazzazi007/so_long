@@ -1,0 +1,9 @@
+[submodule "get_next_line_42"]
+	path = get_next_line_42
+	url = https://github.com/jazzazi007/get_next_line_42.git
+[submodule "42_libft"]
+	path = 42_libft
+	url = https://github.com/jazzazi007/42_libft.git
+[submodule "ft_printf"]
+	path = ft_printf
+	url = https://github.com/jazzazi007/ft_printf.git
