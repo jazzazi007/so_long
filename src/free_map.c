@@ -2,7 +2,20 @@
 
 #include "../include/so_long_header.h"
 
-void	free_map(t_GameMap *game)
+void free_game(t_GMap *game)
+{
+	game->map = NULL;
+	game->rows = 0;
+	game->columns = 0;
+	game->begin_x = 0;
+	game->begin_y = 0;
+	game->collectable = 0;
+	game->start = 0;
+	game->end = 0;
+	game->end_x = 0;
+	game->end_y = 0;
+}
+void	free_map(t_GMap *game)
 {
 	int	i;
 
@@ -15,14 +28,5 @@ void	free_map(t_GameMap *game)
 		i++;
 	}
 	free(game->map);
-	game->map = NULL;
-	game->rows = 0;
-	game->cols = 0;
-	game->start_x = 0;
-	game->start_y = 0;
-	game->collectables = 0;
-	game->start = 0;
-	game->end = 0;
-	game->exit_x = 0;
-	game->exit_y = 0;
+	free_game(game);
 }

@@ -12,21 +12,21 @@
 # include "../minilibx-linux/mlx.h"
 # include <string.h>
 
-typedef struct s_GameMap
+typedef struct s_GMap
 {
 	char	**map;
 	int		rows;
-	int		cols;
-	int		start_x;
-	int		start_y;
-	int		collectables;
+	int		columns;
+	int		begin_x;
+	int		begin_y;
+	int		collectable;
 	int		start;
 	int		end;
-	int		exit_x;
-	int		exit_y;
-}	t_GameMap;
+	int		end_x;
+	int		end_y;
+}	t_GMap;
 
-typedef struct s_vars
+typedef struct s_setup
 {
 	void	*mlx;
 	void	*win;
@@ -51,26 +51,26 @@ typedef struct s_vars
 	int		move_count;
 	int		collectibles_left;
 	char	last_direction;
-}	t_vars;
+}	t_setup;
 
-int		validate_char(char c, t_GameMap *game, int i, int j);
-int		map_components_check(t_GameMap *game);
-int		shape_checker(t_GameMap *game);
-int		mid_rows_boarder_check(t_GameMap *game);
-int		top_bottom_rows_boarder_check(t_GameMap *game);
-int		validate_map(t_GameMap *game);
-int		get_x_y(t_GameMap *game, int fd);
-int		get_map(t_GameMap *game, int fd);
-int		handle_exit(t_vars *vars);
-int		combined_key_handler(int keycode, t_vars *vars);
-int		animate_orc(t_vars *vars);
-int		initialize_mlx(t_vars *vars, t_GameMap *game);
-int		load_first_check_map(t_GameMap *game, char *file_name);
-void	load_map_tile(t_vars *vars, int row, int col);
-void	render_map(t_vars *vars);
-void	update_door_state(t_vars *vars);
-void	free_map(t_GameMap *game);
-void	move_orc(t_vars *vars, int dx, int dy);
-void	orc_start_position(t_vars *vars);
+int		validate_char(char c, t_GMap *game, int i, int j);
+int		map_components_check(t_GMap *game);
+int		shape_checker(t_GMap *game);
+int		mid_rows_boarder_check(t_GMap *game);
+int		top_bottom_rows_boarder_check(t_GMap *game);
+int		validate_map(t_GMap *game);
+int		get_x_y(t_GMap *game, int fd);
+int		get_map(t_GMap *game, int fd);
+int		handle_exit(t_setup *vars);
+int		combined_key_handler(int keycode, t_setup *vars);
+int		animate_orc(t_setup *vars);
+int		initialize_mlx(t_setup *vars, t_GMap *game);
+int		load_first_check_map(t_GMap *game, char *file_name);
+void	load_map_tile(t_setup *vars, int row, int col);
+void	render_map(t_setup *vars);
+void	update_door_state(t_setup *vars);
+void	free_map(t_GMap *game);
+void	move_orc(t_setup *vars, int dx, int dy);
+void	orc_start_position(t_setup *vars);
 
 #endif

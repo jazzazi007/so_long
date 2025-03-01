@@ -2,7 +2,7 @@
 
 #include "../include/so_long_header.h"
 
-int	handle_key(int keycode, t_vars *vars)
+int	handle_key(int keycode, t_setup *vars)
 {
 	if (keycode == 119 || keycode == 65362)
 	{
@@ -31,7 +31,7 @@ int	handle_key(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	combined_key_handler(int keycode, t_vars *vars)
+int	combined_key_handler(int keycode, t_setup *vars)
 {
 	if (keycode == 65307)
 		return (handle_exit(vars));

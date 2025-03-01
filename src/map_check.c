@@ -23,14 +23,14 @@ void	*safe_calloc(size_t num, size_t size, void **ptr_array, int index)
 	return (ptr);
 }
 
-int	is_valid(int x, int y, t_GameMap *game, char **visited)
+int	is_valid(int x, int y, t_GMap *game, char **visited)
 {
 	return (x >= 0 && x < game->rows && y >= 0
-		&& y < game->cols && !visited[x][y]
+		&& y < game->columns && !visited[x][y]
 		&& game->map[x][y] != '1');
 }
 
-void	flood_fill(t_GameMap *game, int x, int y, char **visited)
+void	flood_fill(t_GMap *game, int x, int y, char **visited)
 {
 	static int	directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 	int			i;
@@ -51,7 +51,7 @@ void	flood_fill(t_GameMap *game, int x, int y, char **visited)
 	}
 }
 
-int	is_exit_reachable(t_GameMap *game)
+int	is_exit_reachable(t_GMap *game)
 {
 	char	**visited;
 	int		i;
@@ -66,11 +66,11 @@ int	is_exit_reachable(t_GameMap *game)
 	i = 0;
 	while (i < game->rows)
 	{
-		visited[i] = safe_calloc(game->cols, sizeof(char), (void **)visited, i);
+		visited[i] = safe_calloc(game->columns, sizeof(char), (void **)visited, i);
 		i++;
 	}
-	flood_fill(game, game->start_x, game->start_y, visited);
-	reachable = visited[game->exit_x][game->exit_y];
+	flood_fill(game, game->begin_x, game->begin_y, visited);
+	reachable = visited[game->end_x][game->end_y];
 	i = 0;
 	while (i < game->rows)
 		free(visited[i++]);
@@ -79,7 +79,7 @@ int	is_exit_reachable(t_GameMap *game)
 	return (reachable);
 }
 
-int	validate_map(t_GameMap *game)
+int	validate_map(t_GMap *game)
 {
 	int	result;
 

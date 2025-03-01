@@ -2,7 +2,7 @@
 
 #include "../include/so_long_header.h"
 
-static int	initialize_game(t_GameMap *game, char *map_file)
+static int	initialization(t_GMap *game, char *map_file)
 {
 	if (load_first_check_map(game, map_file) != 0)
 	{
@@ -20,7 +20,7 @@ static int	initialize_game(t_GameMap *game, char *map_file)
 	return (0);
 }
 
-static int	start_game(t_vars *vars, t_GameMap *game)
+static int	start_game(t_setup *vars, t_GMap *game)
 {
 	if (initialize_mlx(vars, game) != 0)
 	{
@@ -36,20 +36,15 @@ static int	start_game(t_vars *vars, t_GameMap *game)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int main(int ac, char **av)
 {
-	t_GameMap	game;
-	t_vars		vars;
+	t_GMap	game;
+	t_setup		vars;
 
-	if (argc != 2)
-	{
-		perror("PLEASE ADD THE MAP NAME ONLY :(");
+	if (ac != 2)
+		return (perror("Add the map path ../maps/.. or any other files"), 1);
+	if (initialization(&game, av[1]) != 0)
 		return (1);
-	}
-	if (initialize_game(&game, argv[1]) != 0)
-	{
-		return (1);
-	}
 	if (start_game(&vars, &game) != 0)
 	{
 		return (1);
@@ -58,3 +53,4 @@ int	main(int argc, char **argv)
 	free_map(&game);
 	return (0);
 }
+

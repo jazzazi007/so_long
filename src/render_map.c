@@ -2,7 +2,7 @@
 
 #include "../include/so_long_header.h"
 
-void	load_map_tile(t_vars *vars, int row, int col)
+void	load_map_tile(t_setup *vars, int row, int col)
 {
 	if (vars->map[row][col] == '1')
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->wall,
@@ -21,7 +21,7 @@ void	load_map_tile(t_vars *vars, int row, int col)
 			vars->tile_size * col, vars->tile_size * row);
 }
 
-void	render_map(t_vars *vars)
+void	render_map(t_setup *vars)
 {
 	int	row;
 	int	col;

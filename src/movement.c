@@ -2,7 +2,7 @@
 
 #include "../include/so_long_header.h"
 
-void	update_door_state(t_vars *vars)
+void	update_door_state(t_setup *vars)
 {
 	if (vars->collectibles_left > 1)
 		vars->current_door = vars->door_closed;
@@ -12,7 +12,7 @@ void	update_door_state(t_vars *vars)
 		vars->current_door = vars->door_open;
 }
 
-void	handle_collectibles_and_win(t_vars *vars, int new_x,
+void	handle_collectibles_and_win(t_setup *vars, int new_x,
 		int new_y, char target_tile)
 {
 	if (target_tile == 'C')
@@ -28,7 +28,7 @@ void	handle_collectibles_and_win(t_vars *vars, int new_x,
 	update_door_state(vars);
 }
 
-int	animate_orc(t_vars *vars)
+int	animate_orc(t_setup *vars)
 {
 	int	row;
 	int	col;
@@ -52,7 +52,7 @@ int	animate_orc(t_vars *vars)
 	return (0);
 }
 
-void	orc_start_position(t_vars *vars)
+void	orc_start_position(t_setup *vars)
 {
 	int	row;
 	int	col;
@@ -77,7 +77,7 @@ void	orc_start_position(t_vars *vars)
 	vars->player_x = -1;
 }
 
-void	move_orc(t_vars *vars, int dx, int dy)
+void	move_orc(t_setup *vars, int dx, int dy)
 {
 	int		new_x;
 	int		new_y;

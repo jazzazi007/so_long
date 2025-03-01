@@ -2,7 +2,7 @@
 
 #include "../include/so_long_header.h"
 
-static void	free_map_resources(t_vars *vars)
+static void	free_map_resources(t_setup *vars)
 {
 	int	i;
 
@@ -15,7 +15,7 @@ static void	free_map_resources(t_vars *vars)
 	free(vars->map);
 }
 
-static void	free_images(t_vars *vars)
+static void	free_images(t_setup *vars)
 {
 	if (vars->wall)
 		mlx_destroy_image(vars->mlx, vars->wall);
@@ -39,7 +39,7 @@ static void	free_images(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->map_tile);
 }
 
-static void	free_mlx_resources(t_vars *vars)
+static void	free_mlx_resources(t_setup *vars)
 {
 	if (vars->win)
 		mlx_destroy_window(vars->mlx, vars->win);
@@ -48,7 +48,7 @@ static void	free_mlx_resources(t_vars *vars)
 	free(vars->mlx);
 }
 
-static void	clean_exit(t_vars *vars)
+static void	clean_exit(t_setup *vars)
 {
 	free_map_resources(vars);
 	free_images(vars);
@@ -56,7 +56,7 @@ static void	clean_exit(t_vars *vars)
 	exit(0);
 }
 
-int	handle_exit(t_vars *vars)
+int	handle_exit(t_setup *vars)
 {
 	clean_exit(vars);
 	return (0);
