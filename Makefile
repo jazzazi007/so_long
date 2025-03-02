@@ -1,4 +1,3 @@
-
 NAME 	= so_long
 
 CC 		= gcc
@@ -22,8 +21,6 @@ SRCS 	=	./src/cont_map_check.c			\
 		./get_next_line_42/get_next_line.c			\
 		./get_next_line_42/get_next_line_utils.c
 
-all: $(NAME)
-
 OBJS	= $(SRCS:.c=.o)
 
 LIBFT_DIR = 42_libft
@@ -32,27 +29,34 @@ Printf_DIR = ft_printf
 LIBFT = $(LIBFT_DIR)/libft.a
 Printf = $(Printf_DIR)/libftprintf.a
 
-all: $(LIBFT) $(Printf) $(NAME)
+all: $(MLX_PATH)/libmlx.a $(LIBFT) $(Printf) $(NAME)
+
+$(MLX_PATH)/libmlx.a:
+	$(MAKE) -C $(MLX_PATH)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
+
 $(Printf):
 	$(MAKE) -C $(Printf_DIR)
-$(NAME): $(OBJS) $(LIBFT) $(Printf)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -L$(Printf_DIR) -lft
+
+$(NAME): $(OBJS) $(LIBFT) $(Printf) $(MLX_PATH)/libmlx.a
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -L$(Printf_DIR) -lft $(LIBMLX)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(Printf_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(Printf_DIR) -I$(MLX_PATH) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(Printf_DIR) clean
+	$(MAKE) -C $(MLX_PATH) clean
 
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(Printf_DIR) fclean
+	$(MAKE) -C $(MLX_PATH) clean
 
 re: fclean all
 

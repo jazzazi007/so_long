@@ -32,7 +32,7 @@ static int process_map_element(char element, t_GMap *game, int x, int y)
         case '1':
             return (0);
         default:
-            ft_putstr_fd("Error\nInvalid map character\n", 2);
+            //ft_putstr_fd("Error\nInvalid map character\n", 2);
             return (1);
     }
     return (0);
@@ -40,6 +40,7 @@ static int process_map_element(char element, t_GMap *game, int x, int y)
 
 static int check_border_row(char *row, int is_first)
 {
+    
     int i;
 
     i = 0;
