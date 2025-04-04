@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ini_mlx.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moaljazz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 15:28:29 by moaljazz          #+#    #+#             */
+/*   Updated: 2025/04/04 15:28:33 by moaljazz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long_header.h"
 
 static int allocate_map_memory(t_setup *vars, t_GMap *game)
@@ -39,13 +51,13 @@ static void setup_game_parameters(t_setup *vars, t_GMap *game)
 static int load_player_images(t_setup *vars)
 {
     vars->orc_up = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/s/u_1.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/rocket.xpm", &vars->tile_size, &vars->tile_size);
     vars->orc_down = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/s/d_1.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/rocket_down.xpm", &vars->tile_size, &vars->tile_size);
     vars->orc_left = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/s/l_1.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/rocket_left.xpm", &vars->tile_size, &vars->tile_size);
     vars->orc_right = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/s/r_1.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/rocket_right.xpm", &vars->tile_size, &vars->tile_size);
 
     return (!vars->orc_up || !vars->orc_down || 
             !vars->orc_left || !vars->orc_right);
@@ -54,17 +66,17 @@ static int load_player_images(t_setup *vars)
 static int load_map_elements(t_setup *vars)
 {
     vars->wall = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/w/wall.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/black.xpm", &vars->tile_size, &vars->tile_size);
     vars->map_tile = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/m/map.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/map.xpm", &vars->tile_size, &vars->tile_size);
     vars->skeleton = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/c/skel_1.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/star.xpm", &vars->tile_size, &vars->tile_size);
     vars->door_closed = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/e/c_d.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/earth.xpm", &vars->tile_size, &vars->tile_size);
     vars->door_semi_open = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/e/s_o.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/sun.xpm", &vars->tile_size, &vars->tile_size);
     vars->door_open = mlx_xpm_file_to_image(vars->mlx,
-            "./pics/e/o_d.xpm", &vars->tile_size, &vars->tile_size);
+            "./pics/sparkle.xpm", &vars->tile_size, &vars->tile_size);
 
     return (!vars->wall || !vars->map_tile || !vars->door_closed || 
             !vars->skeleton || !vars->door_semi_open || !vars->door_open);

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moaljazz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 15:28:49 by moaljazz          #+#    #+#             */
+/*   Updated: 2025/04/04 15:28:50 by moaljazz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long_header.h"
 
-static void handle_error(const char *message, int fd)
+static void handle_error(char *message, int fd)
 {
     ft_putstr_fd("Error\n", 2);
     ft_putstr_fd(message, 2);

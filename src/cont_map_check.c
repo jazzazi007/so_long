@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cont_map_check.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moaljazz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 15:27:54 by moaljazz          #+#    #+#             */
+/*   Updated: 2025/04/04 15:27:56 by moaljazz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long_header.h"
 
 static void init_game_stats(t_GMap *game)
@@ -43,6 +55,7 @@ static int check_border_row(char *row, int is_first)
     
     int i;
 
+    (void) is_first; // Unused variable
     i = 0;
     while (row[i] && row[i] != '\n')
     {

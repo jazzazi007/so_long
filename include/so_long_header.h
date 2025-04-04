@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_header.h                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moaljazz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 15:27:05 by moaljazz          #+#    #+#             */
+/*   Updated: 2025/04/04 15:27:11 by moaljazz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 
 #ifndef SO_LONG_HEADER_H
@@ -9,6 +21,8 @@
 # include <stdio.h>
 # include <limits.h>
 # include "../get_next_line_42/get_next_line.h"
+#include "../42_libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
 # include <string.h>
 
