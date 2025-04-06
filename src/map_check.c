@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../include/so_long_header.h"
 
 void	*safe_calloc(size_t num, size_t size, void **ptr_array, int index)
@@ -37,9 +35,8 @@ void	*safe_calloc(size_t num, size_t size, void **ptr_array, int index)
 
 int	is_valid(int x, int y, t_GMap *game, char **visited)
 {
-	return (x >= 0 && x < game->rows && y >= 0
-		&& y < game->columns && !visited[x][y]
-		&& game->map[x][y] != '1');
+	return (x >= 0 && x < game->rows && y >= 0 && y < game->columns
+		&& !visited[x][y] && game->map[x][y] != '1');
 }
 
 void	flood_fill(t_GMap *game, int x, int y, char **visited)
@@ -78,7 +75,8 @@ int	is_exit_reachable(t_GMap *game)
 	i = 0;
 	while (i < game->rows)
 	{
-		visited[i] = safe_calloc(game->columns, sizeof(char), (void **)visited, i);
+		visited[i] = safe_calloc(game->columns, sizeof(char), (void **)visited,
+				i);
 		i++;
 	}
 	flood_fill(game, game->begin_x, game->begin_y, visited);
@@ -93,23 +91,20 @@ int	is_exit_reachable(t_GMap *game)
 
 int	validate_map(t_GMap *game)
 {
-	int	result;
-
 	if (shape_checker(game) != 0 || map_components_check(game) != 0)
 	{
-		perror("Invalid Map-Shape or Components");
+		ft_putstr_fd("Invalid Map-Shape or Components\n", 2);
 		return (1);
 	}
 	if (mid_rows_boarder_check(game) != 0
 		|| top_bottom_rows_boarder_check(game) != 0)
 	{
-		perror("Boarder Failure");
+		ft_putstr_fd("Boarder Failure", 2);
 		return (1);
 	}
-	result = is_exit_reachable(game);
-	if (result == 0)
+	if (!(is_exit_reachable(game) && is_all_collectibles_reachable(game)))
 	{
-		perror("Exit not reachable");
+		ft_putstr_fd("Exit or collectibles not reachable\n", 2);
 		return (1);
 	}
 	return (0);

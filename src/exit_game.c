@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../include/so_long_header.h"
 
 static void	free_map_resources(t_setup *vars)
@@ -29,24 +27,24 @@ static void	free_map_resources(t_setup *vars)
 
 static void	free_images(t_setup *vars)
 {
-	if (vars->wall)
-		mlx_destroy_image(vars->mlx, vars->wall);
-	if (vars->door_closed)
-		mlx_destroy_image(vars->mlx, vars->door_closed);
-	if (vars->door_open)
-		mlx_destroy_image(vars->mlx, vars->door_open);
-	if (vars->door_semi_open)
-		mlx_destroy_image(vars->mlx, vars->door_semi_open);
-	if (vars->skeleton)
-		mlx_destroy_image(vars->mlx, vars->skeleton);
-	if (vars->orc_up)
-		mlx_destroy_image(vars->mlx, vars->orc_up);
-	if (vars->orc_down)
-		mlx_destroy_image(vars->mlx, vars->orc_down);
-	if (vars->orc_left)
-		mlx_destroy_image(vars->mlx, vars->orc_left);
-	if (vars->orc_right)
-		mlx_destroy_image(vars->mlx, vars->orc_right);
+	if (vars->hole)
+		mlx_destroy_image(vars->mlx, vars->hole);
+	if (vars->earth)
+		mlx_destroy_image(vars->mlx, vars->earth);
+	if (vars->spiral)
+		mlx_destroy_image(vars->mlx, vars->spiral);
+	if (vars->sun)
+		mlx_destroy_image(vars->mlx, vars->sun);
+	if (vars->stars)
+		mlx_destroy_image(vars->mlx, vars->stars);
+	if (vars->rck_up)
+		mlx_destroy_image(vars->mlx, vars->rck_up);
+	if (vars->rck_down)
+		mlx_destroy_image(vars->mlx, vars->rck_down);
+	if (vars->rck_left)
+		mlx_destroy_image(vars->mlx, vars->rck_left);
+	if (vars->rck_right)
+		mlx_destroy_image(vars->mlx, vars->rck_right);
 	if (vars->map_tile)
 		mlx_destroy_image(vars->mlx, vars->map_tile);
 }

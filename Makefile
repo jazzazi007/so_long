@@ -17,7 +17,9 @@ SRCS 	=	./src/cont_map_check.c			\
 		./src/main.c				\
 		./src/map_check.c			\
 		./src/movement.c			\
+		./src/handle_stars.c			\
 		./src/render_map.c			\
+		./src/cont_map_utils.c				\
 		./get_next_line_42/get_next_line.c			\
 		./get_next_line_42/get_next_line_utils.c
 

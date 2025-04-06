@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "so_long_header.h": "c"
+        "so_long_header.h": "c",
+        "chrono": "c",
+        "functional": "c"
     }
 }

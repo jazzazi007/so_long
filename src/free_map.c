@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../include/so_long_header.h"
 
-void free_game(t_GMap *game)
+void	free_game(t_GMap *game)
 {
 	game->map = NULL;
 	game->rows = 0;
@@ -27,6 +25,7 @@ void free_game(t_GMap *game)
 	game->end_x = 0;
 	game->end_y = 0;
 }
+
 void	free_map(t_GMap *game)
 {
 	int	i;
