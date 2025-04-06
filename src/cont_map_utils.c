@@ -12,19 +12,30 @@
 
 #include "../include/so_long_header.h"
 
-int	shape_checker(t_GMap *game)
+int shape_checker(t_GMap *game)
 {
-	int	first_row_len;
+    int i;
+    int first_row_len;
+    int current_row_len;
 
-	first_row_len = 0;
-	while (game->map[0][first_row_len] && game->map[0][first_row_len] != '\n')
-		first_row_len++;
-	if (first_row_len == game->rows)
-	{
-		ft_putstr_fd("Error\nMap is not rectangular\n", 2);
-		return (1);
-	}
-	return (0);
+    first_row_len = 0;
+    while (game->map[0][first_row_len] && game->map[0][first_row_len] != '\n')
+        first_row_len++;
+    game->columns = first_row_len;
+    i = 1;
+    while (i < game->rows)
+    {
+        current_row_len = 0;
+        while (game->map[i][current_row_len] && game->map[i][current_row_len] != '\n')
+            current_row_len++;
+        if (current_row_len != first_row_len)
+        {
+            ft_putstr_fd("Error\nRow differs from others", 2);
+            return (1);
+        }
+        i++;
+    }
+    return (0);
 }
 
 int	mid_rows_boarder_check(t_GMap *game)

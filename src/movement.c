@@ -32,7 +32,9 @@ void	handle_collectibles_and_win(t_setup *vars, int new_x, int new_y,
 	}
 	if (target_tile == 'E' && vars->collectibles_left == 0)
 	{
-		printf("You won in %d moves!\n", vars->move_count);
+		ft_putstr_fd("You won in", 1);
+		write(1, &vars->move_count, 1);
+		ft_putstr_fd("moves!\n", 1);
 		handle_exit(vars);
 	}
 	update_door_state(vars);
@@ -111,5 +113,7 @@ void	move_rck(t_setup *vars, int dx, int dy)
 	vars->player_x = new_x;
 	vars->player_y = new_y;
 	handle_collectibles_and_win(vars, new_x, new_y, target_tile);
-	printf("Moves: %d\n", vars->move_count);
+	ft_putstr_fd("Moves:", 1);
+	write(1, &vars->move_count, 1);
+	ft_putstr_fd("\n", 1);
 }

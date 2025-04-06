@@ -4,7 +4,6 @@ CC 		= cc
 
 CFLAGS 	= -Wall -Wextra -Werror
 
-# Path to your MiniLibX library (adjust if necessary)
 MLX_PATH = ./minilibx-linux
 LIBMLX = -L$(MLX_PATH) -lmlx -lX11 -lXext -lm
 
@@ -25,8 +24,8 @@ SRCS 	=	./src/cont_map_check.c			\
 
 OBJS	= $(SRCS:.c=.o)
 
-LIBFT_DIR = 42_libft
-Printf_DIR = ft_printf
+LIBFT_DIR = ./42_libft
+Printf_DIR = ./ft_printf
 
 LIBFT = $(LIBFT_DIR)/libft.a
 Printf = $(Printf_DIR)/libftprintf.a

@@ -16,17 +16,17 @@ static int	initialization(t_GMap *game, char *map_file)
 {
 	if (load_first_check_map(game, map_file) != 0)
 	{
-		ft_putstr_fd("Map Validation Failed\n", 2);
+		ft_putstr_fd("Error\nMap Validation Failed\n", 2);
 		free_map(game);
 		return (1);
 	}
 	if (validate_map(game) != 0)
 	{
-		ft_putstr_fd("Map Validation Failed\n", 2);
+		ft_putstr_fd("Error\nMap Validation Failed\n", 2);
 		free_map(game);
 		return (1);
 	}
-	printf("Map is valid.\n");
+	ft_putstr_fd("Map is valid.\n", 1);
 	return (0);
 }
 
@@ -34,7 +34,7 @@ static int	start_game(t_setup *vars, t_GMap *game)
 {
 	if (initialize_mlx(vars, game) != 0)
 	{
-		ft_putstr_fd("Map Validation Failed\n", 2);
+		ft_putstr_fd("Error\nMap Validation Failed\n", 2);
 		free_map(game);
 		return (1);
 	}
@@ -53,7 +53,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_putstr_fd("Add the map path ../maps/.. or any other files\n", 2);
+		ft_putstr_fd("Error\nAdd the map path ../maps/.. or any other files\n", 2);
 		return (1);
 	}
 	if (initialization(&game, av[1]) != 0)

@@ -93,7 +93,7 @@ int	validate_map(t_GMap *game)
 {
 	if (shape_checker(game) != 0 || map_components_check(game) != 0)
 	{
-		ft_putstr_fd("Invalid Map-Shape or Components\n", 2);
+		ft_putstr_fd("Error\nInvalid Map-Shape or Components\n", 2);
 		return (1);
 	}
 	if (mid_rows_boarder_check(game) != 0
@@ -104,8 +104,13 @@ int	validate_map(t_GMap *game)
 	}
 	if (!(is_exit_reachable(game) && is_all_collectibles_reachable(game)))
 	{
-		ft_putstr_fd("Exit or collectibles not reachable\n", 2);
+		ft_putstr_fd("Error\nExit or collectibles not reachable\n", 2);
 		return (1);
 	}
+	if (validate_collectibles_position(game))
+    {
+        ft_putstr_fd("Error\nCollectible in unreachable position\n", 2);
+        return (1);
+    }
 	return (0);
 }

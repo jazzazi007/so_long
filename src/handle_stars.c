@@ -19,6 +19,44 @@ int	ret_ini_mlx(t_setup *vars, t_GMap *game)
 	return (0);
 }
 
+int check_star_acess(t_GMap *game, int x, int y)
+{
+	int access_path;
+
+	access_path = 0;
+	if (x > 0 && (game->map[x - 1][y] == '1' || game->map[x - 1][y] == 'E'))
+		access_path ++;
+	if (x < game->rows - 1 && (game->map[x + 1][y] == '1' || game->map[x + 1][y] == 'E'))
+		access_path ++;
+	if (y > 0 && (game->map[x][y - 1] == '1' || game->map[x][y - 1] == 'E'))
+		access_path ++;
+	if (y < game->columns - 1 && (game->map[x][y + 1] == '1' || game->map[x][y + 1] == 'E'))
+		access_path ++;
+	return (access_path);
+}
+
+int validate_collectibles_position(t_GMap *game)
+{
+    int i, j;
+
+	i = 0;
+    while (i < game->rows)
+    {
+		j = 0;
+        while (j < game->columns)
+        {
+            if (game->map[i][j] == 'C')
+            {
+                if (check_star_acess(game, i, j) == 4)
+                    return (1);
+            }
+			j++;
+        }
+		i++;
+    }
+    return (0);
+}
+
 static int	collictables(t_GMap *game, char **visited)
 {
 	int	i;

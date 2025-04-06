@@ -94,5 +94,7 @@ int			is_all_collectibles_reachable(t_GMap *game);
 void		*safe_calloc(size_t num, size_t size, void **ptr_array, int index);
 void		flood_fill(t_GMap *game, int x, int y, char **visited);
 int			ret_ini_mlx(t_setup *vars, t_GMap *game);
+int validate_collectibles_position(t_GMap *game);
+int check_star_acess(t_GMap *game, int x, int y);
 
 #endif
