@@ -53,7 +53,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_putstr_fd("Error\nAdd the map path ../maps/.. or any other files\n", 2);
+		ft_putstr_fd("Error\nAdd the map path ../maps/.. or any other files\n",
+			2);
 		return (1);
 	}
 	if (initialization(&game, av[1]) != 0)

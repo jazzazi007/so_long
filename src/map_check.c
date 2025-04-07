@@ -47,6 +47,8 @@ void	flood_fill(t_GMap *game, int x, int y, char **visited)
 	int			new_y;
 
 	visited[x][y] = 1;
+	if (game->map[x][y] == 'E')
+		return ;
 	i = 0;
 	while (i < 4)
 	{
@@ -108,9 +110,9 @@ int	validate_map(t_GMap *game)
 		return (1);
 	}
 	if (validate_collectibles_position(game))
-    {
-        ft_putstr_fd("Error\nCollectible in unreachable position\n", 2);
-        return (1);
-    }
+	{
+		ft_putstr_fd("Error\nCollectible in unreachable position\n", 2);
+		return (1);
+	}
 	return (0);
 }
