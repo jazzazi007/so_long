@@ -18,6 +18,10 @@ static char	*read_line(int fd, int *rows, int *max_cols)
 	int		line_len;
 
 	line = get_next_line(fd);
+	if (!line || line[0] == '\0')
+	{
+		return (NULL);
+	}
 	if (line)
 	{
 		line_len = ft_strlen(line) - 1;
@@ -48,6 +52,11 @@ static int	get_map_dimensions(t_GMap *game, int fd)
 	game->columns = 0;
 	current_col = 0;
 	line = read_line(fd, &game->rows, &current_col);
+	if (!line || line[0] == '\0')
+	{
+		ft_printf("Error\nEmpty map\n");
+		return (1);
+	}
 	while (line)
 	{
 		free(line);
@@ -66,7 +75,9 @@ static int	load_map_data(t_GMap *game, int fd)
 
 	game->map = malloc(sizeof(char *) * game->rows);
 	if (!game->map)
+	{
 		return (1);
+	}
 	row = 0;
 	line = read_line(fd, &row, NULL);
 	while (line)

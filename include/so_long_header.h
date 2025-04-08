@@ -16,8 +16,8 @@
 # include "../42_libft/libft.h"
 # include "../ft_printf/ft_printf.h"
 # include "../get_next_line_42/get_next_line.h"
-# include "../minilibx-linux/mlx.h"
 # include <limits.h>
+# include <mlx.h>
 # include <stdarg.h>
 # include <stdint.h>
 # include <stdio.h>
@@ -73,7 +73,6 @@ int			top_bottom_rows_boarder_check(t_GMap *game);
 int			validate_map(t_GMap *game);
 int			get_x_y(t_GMap *game, int fd);
 int			get_map(t_GMap *game, int fd);
-int			handle_exit(t_setup *vars);
 int			combined_key_handler(int keycode, t_setup *vars);
 int			animate_rck(t_setup *vars);
 int			initialize_mlx(t_setup *vars, t_GMap *game);
@@ -96,5 +95,9 @@ void		flood_fill(t_GMap *game, int x, int y, char **visited);
 int			ret_ini_mlx(t_setup *vars, t_GMap *game);
 int			validate_collectibles_position(t_GMap *game);
 int			check_star_acess(t_GMap *game, int x, int y);
+void		free_images(t_setup *vars);
+int			handle_exit(t_setup *vars, int ex);
+void		destroy_win(t_setup *vars);
+int			destroy_map_mlx(t_setup *vars);
 
 #endif

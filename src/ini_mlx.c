@@ -16,21 +16,25 @@ static int	allocate_map_memory(t_setup *vars, t_GMap *game)
 {
 	int	i;
 
+	i = 0;
 	vars->map = malloc(game->rows * sizeof(char *));
 	if (!vars->map)
+	{
+		destroy_win(vars);
 		return (1);
+	}
 	i = 0;
 	while (i < game->rows)
 	{
 		vars->map[i] = malloc(game->columns * sizeof(char));
 		if (!vars->map[i])
 		{
-			while (--i >= 0)
-				free(vars->map[i]);
-			free(vars->map);
+			while (i >= 0)
+				free(vars->map[i--]);
+			destroy_win(vars);
 			return (1);
 		}
-		memcpy(vars->map[i], game->map[i], game->columns * sizeof(char));
+		ft_memcpy(vars->map[i], game->map[i], game->columns * sizeof(char));
 		i++;
 	}
 	return (0);
@@ -77,6 +81,13 @@ static int	load_map_elements(t_setup *vars)
 			&vars->tile_size, &vars->tile_size);
 	vars->spiral = mlx_xpm_file_to_image(vars->mlx, "./pics/sparkle.xpm",
 			&vars->tile_size, &vars->tile_size);
+	if (load_player_images(vars) || !vars->hole || !vars->map_tile
+		|| !vars->earth || !vars->stars || !vars->sun || !vars->spiral)
+	{
+		ft_printf("Error\nFailed to load map elements\n");
+		handle_exit(vars, 0);
+		return (1);
+	}
 	return (!vars->hole || !vars->map_tile || !vars->earth || !vars->stars
 		|| !vars->sun || !vars->spiral);
 }
@@ -86,23 +97,22 @@ int	initialize_mlx(t_setup *vars, t_GMap *game)
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 	{
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
 		ft_putstr_fd("Error\nFailed to initialize MiniLibX\n", 2);
 		return (1);
 	}
 	vars->win = mlx_new_window(vars->mlx, game->columns * 37, game->rows * 37,
 			"So Long");
 	if (!vars->win)
-	{
-		ft_putstr_fd("Error\nFailed to create window\n", 2);
-		return (1);
-	}
+		return (destroy_map_mlx(vars));
 	if (allocate_map_memory(vars, game))
 	{
 		ft_putstr_fd("Error\nMemory allocation failed\n", 2);
 		return (1);
 	}
 	setup_game_parameters(vars, game);
-	if (load_map_elements(vars) || load_player_images(vars))
+	if (load_map_elements(vars))
 	{
 		ft_putstr_fd("Error\nFailed to load game assets\n", 2);
 		return (1);

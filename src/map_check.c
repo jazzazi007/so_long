@@ -71,15 +71,15 @@ int	is_exit_reachable(t_GMap *game)
 	visited = malloc(game->rows * sizeof(char *));
 	if (!visited)
 	{
+		free_map(game);
 		perror("Memory allocation failed");
 		exit(EXIT_FAILURE);
 	}
-	i = 0;
-	while (i < game->rows)
+	i = -1;
+	while (++i < game->rows)
 	{
 		visited[i] = safe_calloc(game->columns, sizeof(char), (void **)visited,
 				i);
-		i++;
 	}
 	flood_fill(game, game->begin_x, game->begin_y, visited);
 	reachable = visited[game->end_x][game->end_y];

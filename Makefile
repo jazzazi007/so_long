@@ -2,13 +2,12 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-MLX_PATH = ./minilibx-linux
 LIBFT_DIR = ./42_libft
 Printf_DIR = ./ft_printf
 
 LIBFT = $(LIBFT_DIR)/libft.a
 Printf = $(Printf_DIR)/libftprintf.a
-LIBMLX = -L$(MLX_PATH) -lmlx -lX11 -lXext -lm
+LIBMLX = -L. -lmlx -lX11 -lXext -lm
 
 SRCS = ./src/cont_map_check.c ./src/exit_game.c ./src/free_map.c ./src/ini_mlx.c \
        ./src/key_handler.c ./src/load_map.c ./src/main.c ./src/map_check.c \
@@ -17,10 +16,7 @@ SRCS = ./src/cont_map_check.c ./src/exit_game.c ./src/free_map.c ./src/ini_mlx.c
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(MLX_PATH)/libmlx.a $(LIBFT) $(Printf) $(NAME)
-
-$(MLX_PATH)/libmlx.a:
-	$(MAKE) -C $(MLX_PATH)
+all:  $(LIBFT) $(Printf) $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
@@ -28,23 +24,21 @@ $(LIBFT):
 $(Printf):
 	$(MAKE) -C $(Printf_DIR)
 
-$(NAME): $(OBJS) $(LIBFT) $(Printf) $(MLX_PATH)/libmlx.a
+$(NAME): $(OBJS) $(LIBFT) $(Printf)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft -L$(Printf_DIR) -lftprintf $(LIBMLX)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(Printf_DIR) -I$(MLX_PATH) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(Printf_DIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(Printf_DIR) clean
-	$(MAKE) -C $(MLX_PATH) clean
 
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(Printf_DIR) fclean
-	$(MAKE) -C $(MLX_PATH) clean
 
 re: fclean all
 

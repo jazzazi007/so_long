@@ -12,6 +12,23 @@
 
 #include "../include/so_long_header.h"
 
+int	destroy_map_mlx(t_setup *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	ft_putstr_fd("Error\nFailed to create window\n", 2);
+	return (1);
+}
+
+void	destroy_win(t_setup *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	free(vars->map);
+}
+
 void	free_game(t_GMap *game)
 {
 	game->map = NULL;

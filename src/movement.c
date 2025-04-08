@@ -33,7 +33,7 @@ void	handle_collectibles_and_win(t_setup *vars, int new_x, int new_y,
 	if (target_tile == 'E' && vars->collectibles_left == 0)
 	{
 		ft_printf("You won in %d moves!\n", vars->move_count);
-		handle_exit(vars);
+		handle_exit(vars, 1);
 	}
 	update_door_state(vars);
 }

@@ -30,6 +30,12 @@ static int	initialization(t_GMap *game, char *map_file)
 	return (0);
 }
 
+static int	mlx_free(t_setup *vars)
+{
+	handle_exit(vars, 1);
+	return (0);
+}
+
 static int	start_game(t_setup *vars, t_GMap *game)
 {
 	if (initialize_mlx(vars, game) != 0)
@@ -41,7 +47,7 @@ static int	start_game(t_setup *vars, t_GMap *game)
 	render_map(vars);
 	mlx_loop_hook(vars->mlx, animate_rck, vars);
 	mlx_hook(vars->win, 2, 1L << 0, combined_key_handler, vars);
-	mlx_hook(vars->win, 17, 1L << 17, handle_exit, vars);
+	mlx_hook(vars->win, 17, 1L << 17, mlx_free, vars);
 	mlx_loop(vars->mlx);
 	return (0);
 }
@@ -60,10 +66,8 @@ int	main(int ac, char **av)
 	if (initialization(&game, av[1]) != 0)
 		return (1);
 	if (start_game(&vars, &game) != 0)
-	{
 		return (1);
-	}
-	handle_exit(&vars);
+	handle_exit(&vars, 1);
 	free_map(&game);
 	return (0);
 }

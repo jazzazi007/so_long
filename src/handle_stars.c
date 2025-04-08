@@ -92,6 +92,7 @@ int	is_all_collectibles_reachable(t_GMap *game)
 	if (!visited)
 	{
 		perror("Memory allocation failed");
+		free_map(game);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;

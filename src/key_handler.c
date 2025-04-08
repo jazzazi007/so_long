@@ -44,7 +44,7 @@ int	handle_key(int keycode, t_setup *vars)
 int	combined_key_handler(int keycode, t_setup *vars)
 {
 	if (keycode == 65307)
-		return (handle_exit(vars));
+		return (handle_exit(vars, 1));
 	return (handle_key(keycode, vars));
 }
 
